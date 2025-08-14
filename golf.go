@@ -4,7 +4,6 @@ import (
 	. "bufio"
 	. "os"
 	. "strconv"
-	t "strings"
 )
 
 func main() {
@@ -26,7 +25,9 @@ func main() {
 				if c >= 5 {
 					o += h
 				}
-				o += t.Repeat(x, c%5)
+				for range c % 5 {
+					o += x
+				}
 			}
 			n -= c * a
 			a /= 10
