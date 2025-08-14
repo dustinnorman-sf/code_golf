@@ -2,7 +2,6 @@ package main
 
 import (
 	. "bufio"
-	. "math"
 	. "os"
 	. "strconv"
 	t "strings"
@@ -15,11 +14,10 @@ func main() {
 	for s.Scan() {
 		n, _ := Atoi(s.Text())
 		o := ""
+		a := 1000
 		for i := range 4 {
-			a := int(Pow10(3 - i))
 			c := n / a
-			x := r[i : i+1]
-			h := r[i+3 : i+4]
+			x, h := r[i:i+1], r[i+3:i+4]
 			if c == 4 {
 				o += x + h
 			} else if c == 9 {
@@ -31,6 +29,7 @@ func main() {
 				o += t.Repeat(x, c%5)
 			}
 			n -= c * a
+			a /= 10
 		}
 		println(o)
 	}
