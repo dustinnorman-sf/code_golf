@@ -7,22 +7,19 @@ import (
 )
 
 func main() {
-	r := "MCXIDLV"
 	f, _ := Open(Args[1])
-	s := NewScanner(f)
+	s, r := NewScanner(f), "MCXIDLV"
 	for s.Scan() {
 		n, _ := Atoi(s.Text())
-		o := ""
-		a := 1000
+		o, a := "", 1000
 		for i := range 4 {
-			c := n / a
-			x, h := r[i:i+1], r[i+3:i+4]
+			c, x, h := n/a, r[i:i+1], r[i+3:i+4]
 			if c == 4 {
 				o += x + h
 			} else if c == 9 {
 				o += x + r[i-1:i]
 			} else {
-				if c >= 5 {
+				if c > 4 {
 					o += h
 				}
 				for range c % 5 {
