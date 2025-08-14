@@ -5,11 +5,11 @@ import (
 	. "math"
 	. "os"
 	. "strconv"
-	st "strings"
+	t "strings"
 )
 
 func main() {
-	r := []string{"M", "C", "X", "I", "D", "L", "V"}
+	r := "MCXIDLV"
 	f, _ := Open(Args[1])
 	s := NewScanner(f)
 	for s.Scan() {
@@ -18,17 +18,17 @@ func main() {
 		for i := range 4 {
 			a := int(Pow10(3 - i))
 			c := n / a
-			x := r[i]
-			h := r[i+3]
+			x := r[i : i+1]
+			h := r[i+3 : i+4]
 			if c == 4 {
 				o += x + h
 			} else if c == 9 {
-				o += x + r[i-1]
-			} else if c > 0 {
+				o += x + r[i-1:i]
+			} else {
 				if c >= 5 {
 					o += h
 				}
-				o += st.Repeat(x, c%5)
+				o += t.Repeat(x, c%5)
 			}
 			n -= c * a
 		}
